@@ -7,8 +7,12 @@ from flask_cors import CORS
 from flask_session import Session
 from flask_mail import Mail
 
+
 app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'filesystem'
+# Allow cross-origin cookies for session authentication
+app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+app.config['SESSION_COOKIE_SECURE'] = True
 # app.config.from_object(Config)
 
 Session(app)
