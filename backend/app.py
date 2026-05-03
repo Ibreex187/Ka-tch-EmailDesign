@@ -9,7 +9,9 @@ from flask_mail import Mail
 
 
 app = Flask(__name__)
+# Allow cross-origin cookies for session authentication
 app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_COOKIE_DOMAIN'] = '.onrender.com'
 # Allow cross-origin cookies for session authentication
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
