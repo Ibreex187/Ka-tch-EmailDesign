@@ -22,8 +22,10 @@ app.register_blueprint(mail_bp, url_prefix='/mail')
 app.register_blueprint(auth_bp, url_prefix='/auth')
 
 # CORS Configuration
+
+# Allow only the deployed frontend to send credentialed requests
 CORS(app, resources={r"/*": {
-    "origins": "*",
+    "origins": ["https://ka-tch-emaildesign.onrender.com"],
     "methods": ["GET", "POST", "DELETE", "OPTIONS"]
 }}, supports_credentials=True)
 
