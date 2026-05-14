@@ -1,22 +1,20 @@
 # Author: MrKangs
 
+import os
 from flask import Flask
 from routes.mail_routes import mail_bp
 from routes.auth_routes import auth_bp
 from flask_cors import CORS
-from flask_session import Session
 from flask_mail import Mail
 
 
 app = Flask(__name__)
-# Allow cross-origin cookies for session authentication
-app.config['SESSION_TYPE'] = 'filesystem'
+# Must be a stable secret — set SECRET_KEY as an environment variable in Render
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'change-me-in-production')
 # Allow cross-origin cookies for session authentication
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
 # app.config.from_object(Config)
-
-Session(app)
 
 mail = Mail(app)
 
